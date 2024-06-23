@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinesDaGame</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+    <script src="index.js" defer></script>
+    <script src="https://kit.fontawesome.com/84167ba9e4.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="">
+        <div class="logo">MINESWEEPER</div>
+        <div class="hamburger" id="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar" id="nav-bar">
+            <ul class="links">
+                <li><a href="#home" >Home</a></li>
+                <li><a href="#rule">Rules</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <video autoplay muted loop plays-inline class="back-video">
+            <source src="media/background_2.mp4" type="video/mp4">
+        </video>
+        <section class="home" id="home">
+            <div class="container">
+                <div class="sideBar">
+                    <div class="stats">
+                        <img src="media/flag.png" alt="" style="height: auto; max-width: 30%;">
+                        <p id="minesCount"></p>
+                    </div>
+    
+                    <div class="timer">
+                        <img src="media/timer.png" alt="" style="height: auto; max-width: 30%;">
+                        <p><span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></p>
+                    </div>
+    
+                    <div class="buttons">
+                        <button id="pauseBtn" onclick="pause()">Pause</button>
+                        <div class="newGame">
+                            <select name="level" id="level">
+                                <option value="small" selected>Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                            <button onclick="newGame()">Start Game</button>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="board" id="board">
+                    <div class="grid" id="grid"></div>
+                </div>
+                <div id="warningBox" class="warn">
+                    <h2>Game Over!</h2>
+                    <p>You lost the game.</p>
+                    <button id="redoBtn" onclick="redo()">Redo</button>
+                    <button onclick="newGame()">New Game</button>
+                </div>
+                <div id="winningBox" class="warn">
+                    <h2>Congrats!</h2>
+                    <p>You won the game.</p>
+                    <button onclick="newGame()">New Game</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="rule" id="rule">
+            <h1>GAME RULES</h1>
+            <div class="items">
+                <div class="boxes">
+                    <div class="box-img">
+                        <img src="media/bomb.png">
+                    </div>
+                    <h3>Mines</h3>
+                    <p>
+                        There are 3 level of difficulty
+                        12x12 grid with 24 mines
+                        16x16 grid with 32 mines
+                        and 20x20 grid with 40 mines
+                    </p>
+                </div>
+    
+                <div class="boxes">
+                    <div class="box-img">
+                        <img src="media/flag.png">
+                    </div>
+                    <h3>Flag</h3>
+                    <p>
+                        Right-click once to put a flag in a 
+                        square where you COMFIRMED that there is a mine
+                    </p>
+                </div>
+    
+                <div class="boxes">
+                    <div class="box-img">
+                        <img src="media/flag_doubt.png">
+                    </div>
+                    <h3>Doubt Flag</h3>
+                    <p>
+                        Right-click twice to put a dounbt flag in a 
+                        square where you SUSPECT that there is a mine
+                    </p>
+                </div>
+    
+                <div class="boxes">
+                    <div class="box-img">
+                        <img src="media/grid.png">
+                    </div>
+                    <h3>Numbers</h3>
+                    <p>
+                        The numbers on a square represent the number of mines that are 
+                        adjacent to the sides and the corners of that square
+                    </p>
+                </div>
+
+                <div class="boxes">
+                    <div class="box-img">
+                        <img src="media/redo.PNG">
+                    </div>
+                    <h3>Redo</h3>
+                    <p>
+                        You can redo the game many times when you open and receive the mines. 
+                        Click the redo button to rollback your choices.
+                    </p>
+                </div>
+                
+                <div class="boxes">
+                    <div class="box-img">
+                        <img src="media/autoOpen.png">
+                    </div>
+                    <h3>Auto Open</h3>
+                    <p>
+                        In the 3x3 area, if the center square contains number and around it has enough flag similar to the number, 
+                        left-click to open all the squares around automatically.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="Contact" id="contact">
+            <div class="waves">
+                <div class="wave" id="wave1"></div>
+                <div class="wave" id="wave2"></div>
+                <div class="wave" id="wave3"></div>
+                <div class="wave" id="wave4"></div>
+            </div>
+           <ul class="social-icon">
+                <li><a href="https://github.com/nth-Higooo/Minesweeper"><i class="fa-brands fa-github" style="color: #ffffff;"></i></a></li>
+           </ul>
+           
+           <div class="email">
+                <form action="https://formsubmit.co/minesweeperdagame@gmail.com" method="POST"">
+                    <input type="email" name="email" placeholder="Your email"/> 
+                    <input type="text" name="comment" placeholder="Leave comment"/>
+                    <button type="submit">Send</button>
+                </form>
+           </div>
+           <ul class="links">
+                <li><a href="#home" >Home</a></li>
+                <li><a href="#rule">Rules</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>
